@@ -12,14 +12,14 @@ import Foundation
 extension String {
     
     // MARK: - Properties
-
+    
     public var hex: Int? {
         return Int(self, radix: 16)
     }
-
+    
     public var insertBraces: String {
-           String(format: "(%@)", self)
-       }
+        String(format: "(%@)", self)
+    }
     
     /// Return Capitalizing First Letter
     public func capitalizingFirstLetter() -> String {
@@ -85,10 +85,10 @@ extension String {
     ///   - isStrikethrough: Bool
     ///   - textAlignment: NSTextAlignment
     public func attributedString(lineSpace: CGFloat,
-                          font fontName: UIFont?,
-                          color textColor: UIColor?,
-                          isStrikethrough: Bool = false,
-                          textAlignment: NSTextAlignment? = nil) -> NSAttributedString {
+                                 font fontName: UIFont?,
+                                 color textColor: UIColor?,
+                                 isStrikethrough: Bool = false,
+                                 textAlignment: NSTextAlignment? = nil) -> NSAttributedString {
         var attributes = [NSAttributedString.Key: Any]()
         attributes[NSAttributedString.Key.foregroundColor] = textColor
         let paragraphStyle = NSMutableParagraphStyle()
@@ -108,20 +108,24 @@ extension String {
     }
     
     /// Localized String
-     public func localized() -> String {
-        let value = NSLocalizedString(self, comment: "")
-        if value != self || NSLocale.preferredLanguages.first == "en" {
-            return value
-        }
-        
-        // Fall back to en
-        guard
-            let path = Bundle.main.path(forResource: "en", ofType: "lproj"),
-            let bundle = Bundle(path: path), !value.isEmpty
-            else { return "" }
-        return NSLocalizedString(self, bundle: bundle, comment: "")
+//    public func localized() -> String {
+//        let value = NSLocalizedString(self, comment: "")
+//        if value != self || NSLocale.preferredLanguages.first == "en" {
+//            return value
+//        }
+//        
+//        // Fall back to en
+//        guard
+//            let path = Bundle.main.path(forResource: "en", ofType: "lproj"),
+//            let bundle = Bundle(path: path), !value.isEmpty
+//            else { return "" }
+//        return NSLocalizedString(self, bundle: bundle, comment: "")
+//    }
+    
+    public func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
+        return NSLocalizedString(self, tableName: tableName, value: "\(self)", comment: "")
     }
-
+    
     ///These subscripts help in accessing a substring easily, like xString[0...2] or xString[1..<3]
     
     subscript (bounds: CountableClosedRange<Int>) -> String {
@@ -135,12 +139,12 @@ extension String {
         let end = index(startIndex, offsetBy: bounds.upperBound)
         return String(self[start..<end])
     }
-
+    
     /// Variable to validate wether the all charactes are numeric
     var isNumeric: Bool {
         !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
-
+    
     /// Variable to validate wether the textfield only contains numeric values
     var numberFiltered: Bool {
         let characterSet = NSCharacterSet.alphanumerics.inverted
