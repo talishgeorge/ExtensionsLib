@@ -106,22 +106,7 @@ extension String {
         let attributedString = NSAttributedString(string: self, attributes: attributes)
         return attributedString
     }
-    
-    /// Localized String
-//    public func localized() -> String {
-//        let value = NSLocalizedString(self, comment: "")
-//        if value != self || NSLocale.preferredLanguages.first == "en" {
-//            return value
-//        }
-//        
-//        // Fall back to en
-//        guard
-//            let path = Bundle.main.path(forResource: "en", ofType: "lproj"),
-//            let bundle = Bundle(path: path), !value.isEmpty
-//            else { return "" }
-//        return NSLocalizedString(self, bundle: bundle, comment: "")
-//    }
-    
+
     public func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
         return NSLocalizedString(self, tableName: tableName, value: "\(self)", comment: "")
     }
