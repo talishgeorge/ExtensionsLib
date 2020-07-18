@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 8.2, *)
-extension UIFont {
+public extension UIFont {
     
     static var avenirNextTab: UIFont {
         return UIFont.init(name: FontType.avenirNextCondensed.rawValue, size: 18) ?? UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light)
