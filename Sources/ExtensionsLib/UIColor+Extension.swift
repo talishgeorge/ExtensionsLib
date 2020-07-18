@@ -1,10 +1,7 @@
 //
-//  UIColor+Extensions.swift
-//  FlowGuide
-//
-//  Created by Talish George on 24/05/20.
-//  Copyright © 2020 Talish George. All rights reserved.
-//
+//  Created by TCS.
+//  Copyright © 2020 TCS. All rights reserved.
+// 
 
 import UIKit
 
